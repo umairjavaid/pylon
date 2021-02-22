@@ -64,8 +64,41 @@ class ChestXRay14CSV(Dataset):
 
     def __getitem__(self, i):
         data = self.df.iloc[i]
-        img_path = os.path.join(self.img_dir, data['Image Index'])
+        img_path = os.path.join(self.img_dir, os.path.join("images_001",data['Image Index']))
         img = cv2_loader(img_path)
+        if(img is not None):
+            img_path = os.path.join(self.img_dir, os.path.join("images_002",data['Image Index']))
+            img = cv2_loader(img_path)
+        if(img is not None):
+            img_path = os.path.join(self.img_dir, os.path.join("images_003",data['Image Index']))
+            img = cv2_loader(img_path)
+        if(img is not None):
+            img_path = os.path.join(self.img_dir, os.path.join("images_004",data['Image Index']))
+            img = cv2_loader(img_path)
+        if(img is not None):
+            img_path = os.path.join(self.img_dir, os.path.join("images_005",data['Image Index']))
+            img = cv2_loader(img_path)
+        if(img is not None):
+            img_path = os.path.join(self.img_dir, os.path.join("images_006",data['Image Index']))
+            img = cv2_loader(img_path)
+        if(img is not None):
+            img_path = os.path.join(self.img_dir, os.path.join("images_007",data['Image Index']))
+            img = cv2_loader(img_path)
+        if(img is not None):
+            img_path = os.path.join(self.img_dir, os.path.join("images_008",data['Image Index']))
+            img = cv2_loader(img_path)
+        if(img is not None):
+            img_path = os.path.join(self.img_dir, os.path.join("images_009",data['Image Index']))
+            img = cv2_loader(img_path)
+        if(img is not None):
+            img_path = os.path.join(self.img_dir, os.path.join("images_010",data['Image Index']))
+            img = cv2_loader(img_path)
+        if(img is not None):
+            img_path = os.path.join(self.img_dir, os.path.join("images_011",data['Image Index']))
+            img = cv2_loader(img_path)
+        if(img is not None):
+            img_path = os.path.join(self.img_dir, os.path.join("images_012",data['Image Index']))
+            img = cv2_loader(img_path)
         assert img is not None, f'cannot read {img_path}'
         if self.transform:
             _res = self.transform(image=img)
