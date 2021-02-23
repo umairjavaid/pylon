@@ -208,9 +208,9 @@ def set_parameter_requires_grad2(model):
       j[1].requires_grad = False
     
 def vgg16(architecture_type, pretrained=False, pretrained_path=None):
-    config_key = '28x28' if kwargs['large_feature_map'] else '14x14'
-    layers = make_layers(configs_dict[architecture_type][config_key], **kwargs)
-    model = {'mymodel47': myModel47}[architecture_type](layers, **kwargs)
+    config_key = '28x28' 
+    layers = make_layers(configs_dict[architecture_type][config_key])
+    model = {'mymodel47': myModel47}[architecture_type](layers)
     if pretrained:
         model = load_pretrained_model(model, architecture_type,
                                       path=pretrained_path)
