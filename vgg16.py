@@ -128,19 +128,15 @@ class myModel47(nn.Module):
         x = torch.max(x1 ,x2)
         x = torch.max(x ,x3)
         x = torch.max(x,x4)
-              
-        if return_cam:
-            x = x1.detach().clone()
-            x = x + x2.detach().clone()
-            x = x + x3.detach().clone()
-            x = x + x4.detach().clone()
-            x = normalize_tensor(x.detach().clone())
-            x = x[range(batch_size), labels]
-            return x
         
+        seg = (x1+x2+x3+x4).float()
         x = self.avgpool(x)
         x = x.view(x.size(0), -1)
-        return {'logits': x}
+
+        return {
+            'pred': x,
+            'seg': seg,
+        }
     
 def adjust_pretrained_model(pretrained_model, current_model):
     def _get_keys(obj, split):
