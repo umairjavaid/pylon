@@ -76,6 +76,6 @@ if __name__ == "__main__":
         eval_localization(
             name=name,
             seed=seed,
-            make_net=make_net('resnet50'),
+            make_net=make_net('vgg16'),
             interpolation='cubic',
         )
