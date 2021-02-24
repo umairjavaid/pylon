@@ -11,6 +11,7 @@ from pylon import *
 from trainer.all import *
 from trainer.callbacks.all import *
 from utils.loader import *
+from vgg16 import *
 """
 Problem:
 RuntimeError: received 0 items of ancdata
