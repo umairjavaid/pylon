@@ -30,6 +30,13 @@ def normalize_tensor(x):
     normalized_tensor = normalized_vector.view(x.size())
     return normalized_tensor
 
+def remove_layer(state_dict, keyword):
+    keys = [key for key in state_dict.keys()]
+    for key in keys:
+        if keyword in key:
+            state_dict.pop(key)
+    return state_dict
+
 def initialize_weights(modules, init_mode):
     for m in modules:
         if isinstance(m, nn.Conv2d):
