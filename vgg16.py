@@ -10,10 +10,6 @@ import torch.nn.functional as F
 from torch.utils.model_zoo import load_url
 
 
-from .method.util import normalize_tensor
-
-from .util import initialize_weights
-
 import matplotlib.pyplot as plt
 
 from torchvision import datasets, models, transforms
