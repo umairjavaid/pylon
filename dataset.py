@@ -117,7 +117,7 @@ class ChestXRay14CSV(Dataset):
     def __getitem__(self, i):
         data = self.df.iloc[i]
         img = self.read_image(data)
-        print("im in dataset.py")
+        #print("im in dataset.py")
         if self.transform:
             _res = self.transform(image=img)
             img = _res['image']
