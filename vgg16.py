@@ -79,7 +79,7 @@ class MyModel2(nn.Module):
           return input_.mul(importance_map)
 
 class myModel47(nn.Module):
-    def __init__(self, features, num_classes=14, **kwargs):
+    def __init__(self, features, num_classes=14):
         super(myModel47, self).__init__()
         self.features = features
         self.conv6 = nn.Conv2d(512,  1024, kernel_size=3, padding=1) 
@@ -182,7 +182,7 @@ def load_pretrained_model(model, architecture_type, path=None):
     return model
 
 
-def make_layers(cfg, **kwargs):
+def make_layers(cfg):
     layers = []
     in_channels = 3
     for v in cfg:
