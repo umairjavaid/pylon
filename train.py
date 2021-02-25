@@ -45,15 +45,15 @@ class BinaryClassificationTrainer(BaseTrainer):
 
 def make_net(backbone):
     #return partial(Pylon, backbone=backbone)
-    return vgg16('mymodel47', pretrained=True)
+    return vgg16('mymodel47',pretrained=True)
 
 
 def train(name,
           bs=64,
           dev='cuda:0',
           seed=0,
-          images_path='../../input/data/',
-          backbone='vgg16',
+          images_path='../../input/data/images',
+          backbone='resnet50',
           lr=1e-4,
           lr_term=1e-6,
           patience=1,
