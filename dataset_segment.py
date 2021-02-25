@@ -61,52 +61,52 @@ class ChestXRay14SegmentPKL(Dataset):
         return len(self.names)
     
     def read_image(self, name):
-        img_path = os.path.join(self.dirname, name)
-        img_path = os.path.join(self.img_dir, os.path.join("images_001/images",data['Image Index']))
+        #img_path = os.path.join(self.dirname, name)
+        img_path = os.path.join(self.dirname, os.path.join("images_001/images",name))
         if os.path.exists(img_path):
             img = cv2_loader(img_path)
             return img
-        img_path = os.path.join(self.img_dir, os.path.join("images_002/images",data['Image Index']))
+        img_path = os.path.join(self.dirname, os.path.join("images_002/images",name))
         if os.path.exists(img_path):
             img = cv2_loader(img_path)
             return img
-        img_path = os.path.join(self.img_dir, os.path.join("images_003/images",data['Image Index']))
+        img_path = os.path.join(self.dirname, os.path.join("images_003/images",name))
         if os.path.exists(img_path):
             img = cv2_loader(img_path)
             return img
-        img_path = os.path.join(self.img_dir, os.path.join("images_004/images",data['Image Index']))
+        img_path = os.path.join(self.dirname, os.path.join("images_004/images",name))
         if os.path.exists(img_path):
             img = cv2_loader(img_path)
             return img
-        img_path = os.path.join(self.img_dir, os.path.join("images_005/images",data['Image Index']))
+        img_path = os.path.join(self.dirname, os.path.join("images_005/images",name))
         if os.path.exists(img_path):
             img = cv2_loader(img_path)
             return img
-        img_path = os.path.join(self.img_dir, os.path.join("images_006/images",data['Image Index']))
+        img_path = os.path.join(self.dirname, os.path.join("images_006/images",name))
         if os.path.exists(img_path):
             img = cv2_loader(img_path)
             return img
-        img_path = os.path.join(self.img_dir, os.path.join("images_007/images",data['Image Index']))
+        img_path = os.path.join(self.dirname, os.path.join("images_007/images",name))
         if os.path.exists(img_path):
             img = cv2_loader(img_path)
             return img
-        img_path = os.path.join(self.img_dir, os.path.join("images_008/images",data['Image Index']))
+        img_path = os.path.join(self.dirname, os.path.join("images_008/images",name))
         if os.path.exists(img_path):
             img = cv2_loader(img_path)
             return img
-        img_path = os.path.join(self.img_dir, os.path.join("images_009/images",data['Image Index']))
+        img_path = os.path.join(self.dirname, os.path.join("images_009/images",name))
         if os.path.exists(img_path):
             img = cv2_loader(img_path)
             return img
-        img_path = os.path.join(self.img_dir, os.path.join("images_010/images",data['Image Index']))
+        img_path = os.path.join(self.dirname, os.path.join("images_010/images",name))
         if os.path.exists(img_path):
             img = cv2_loader(img_path)
             return img
-        img_path = os.path.join(self.img_dir, os.path.join("images_011/images",data['Image Index']))
+        img_path = os.path.join(self.dirname, os.path.join("images_011/images",name))
         if os.path.exists(img_path):
             img = cv2_loader(img_path)
             return img
-        img_path = os.path.join(self.img_dir, os.path.join("images_012/images",data['Image Index']))
+        img_path = os.path.join(self.dirname, os.path.join("images_012/images",name))
         if os.path.exists(img_path):
             img = cv2_loader(img_path)
             return img
