@@ -63,40 +63,40 @@ class ChestXRay14SegmentPKL(Dataset):
     def __getitem__(self, i):
         name = self.names[i]
         img_path = os.path.join(self.dirname, name)
-        img_path = os.path.join(self.img_dir, os.path.join("images_001",data['Image Index']))
+        img_path = os.path.join(self.img_dir, os.path.join("images_001/images",data['Image Index']))
         img = cv2_loader(img_path)
         if(img is not None):
-            img_path = os.path.join(self.img_dir, os.path.join("images_002",data['Image Index']))
+            img_path = os.path.join(self.img_dir, os.path.join("images_002/images",data['Image Index']))
             img = cv2_loader(img_path)
         if(img is not None):
-            img_path = os.path.join(self.img_dir, os.path.join("images_003",data['Image Index']))
+            img_path = os.path.join(self.img_dir, os.path.join("images_003/images",data['Image Index']))
             img = cv2_loader(img_path)
         if(img is not None):
-            img_path = os.path.join(self.img_dir, os.path.join("images_004",data['Image Index']))
+            img_path = os.path.join(self.img_dir, os.path.join("images_004/images",data['Image Index']))
             img = cv2_loader(img_path)
         if(img is not None):
-            img_path = os.path.join(self.img_dir, os.path.join("images_005",data['Image Index']))
+            img_path = os.path.join(self.img_dir, os.path.join("images_005/images",data['Image Index']))
             img = cv2_loader(img_path)
         if(img is not None):
-            img_path = os.path.join(self.img_dir, os.path.join("images_006",data['Image Index']))
+            img_path = os.path.join(self.img_dir, os.path.join("images_006/images",data['Image Index']))
             img = cv2_loader(img_path)
         if(img is not None):
-            img_path = os.path.join(self.img_dir, os.path.join("images_007",data['Image Index']))
+            img_path = os.path.join(self.img_dir, os.path.join("images_007/images",data['Image Index']))
             img = cv2_loader(img_path)
         if(img is not None):
-            img_path = os.path.join(self.img_dir, os.path.join("images_008",data['Image Index']))
+            img_path = os.path.join(self.img_dir, os.path.join("images_008/images",data['Image Index']))
             img = cv2_loader(img_path)
         if(img is not None):
-            img_path = os.path.join(self.img_dir, os.path.join("images_009",data['Image Index']))
+            img_path = os.path.join(self.img_dir, os.path.join("images_009/images",data['Image Index']))
             img = cv2_loader(img_path)
         if(img is not None):
-            img_path = os.path.join(self.img_dir, os.path.join("images_010",data['Image Index']))
+            img_path = os.path.join(self.img_dir, os.path.join("images_010/images",data['Image Index']))
             img = cv2_loader(img_path)
         if(img is not None):
-            img_path = os.path.join(self.img_dir, os.path.join("images_011",data['Image Index']))
+            img_path = os.path.join(self.img_dir, os.path.join("images_011/images",data['Image Index']))
             img = cv2_loader(img_path)
         if(img is not None):
-            img_path = os.path.join(self.img_dir, os.path.join("images_012",data['Image Index']))
+            img_path = os.path.join(self.img_dir, os.path.join("images_012/images",data['Image Index']))
             img = cv2_loader(img_path)
         assert img is not None, f'cannot read {img_path}'
         if name in self.bboxs:
