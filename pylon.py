@@ -83,40 +83,35 @@ class PylonCore(SegmentationModel):
         self.initialize()
 
 class midmodule(nn.Module):
-  def __init__(self,
-            encoder_channels=self.encoder.out_channels,
-            decoder_channels=decoder_channels,
-            upscale_mode='bilinear',
-            align_corners=align_corners,
-        ):
-        self.conv6 = nn.Conv2d(encoder_channels,  1024, kernel_size=3, padding=1) 
-        self.conv7 = nn.Conv2d(1024, decoder_channels, kernel_size=1)
-        self.conv8 = nn.Conv2d(encoder_channels,  1024, kernel_size=3, padding=1) 
-        self.conv9 = nn.Conv2d(1024, decoder_channels, kernel_size=1)
-        self.conv10 = nn.Conv2d(encoder_channels,  1024, kernel_size=3, padding=1) 
-        self.conv11 = nn.Conv2d(1024, decoder_channels, kernel_size=1)
-        self.relu = nn.ReLU(inplace=False)
-
+    def __init__(self,encoder_channels=self.encoder.out_channels,decoder_channels=decoder_channels,upscale_mode='bilinear',align_corners=align_corners,)
+            self.conv6 = nn.Conv2d(encoder_channels,  1024, kernel_size=3, padding=1) 
+            self.conv7 = nn.Conv2d(1024, decoder_channels, kernel_size=1)
+            self.conv8 = nn.Conv2d(encoder_channels,  1024, kernel_size=3, padding=1) 
+            self.conv9 = nn.Conv2d(1024, decoder_channels, kernel_size=1)
+            self.conv10 = nn.Conv2d(encoder_channels,  1024, kernel_size=3, padding=1) 
+            self.conv11 = nn.Conv2d(1024, decoder_channels, kernel_size=1)
+            self.relu = nn.ReLU(inplace=False)
+            
     def forward(self, x):
-        x1 = self.conv6(x)
-        x1 = self.relu(x1)
-        x1 = self.conv7(x1)
-        x1 = self.relu(x1)
+            x1 = self.conv6(x)
+            x1 = self.relu(x1)
+            x1 = self.conv7(x1)
+            x1 = self.relu(x1)
         
-        x2 = self.conv8(x)
-        x2 = self.relu(x2)
-        x2 = self.conv9(x2)
-        x2 = self.relu(x2)
+            x2 = self.conv8(x)
+            x2 = self.relu(x2)
+            x2 = self.conv9(x2)
+            x2 = self.relu(x2)
 
-        x3 = self.conv10(x)
-        x3 = self.relu(x3)
-        x3 = self.conv11(x3)
-        x3 = self.relu(x3)
-        global heatmap
-        heatmap = copy.deepcopy((x1+x2+x3))
-        x = torch.max(x1 ,x2)
-        x = torch.max(x ,x3)
-        return x
+            x3 = self.conv10(x)
+            x3 = self.relu(x3)
+            x3 = self.conv11(x3)
+            x3 = self.relu(x3)
+            global heatmap
+            heatmap = copy.deepcopy((x1+x2+x3))
+            x = torch.max(x1 ,x2)
+            x = torch.max(x ,x3)
+            return x
 
 class PylonDecoder(nn.Module):
     """returns each layer of decoder
