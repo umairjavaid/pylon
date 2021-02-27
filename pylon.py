@@ -93,18 +93,18 @@ class midmodule(nn.Module):
             self.conv11 = nn.Conv2d(1024, decoder_channels, kernel_size=1)
             self.relu = nn.ReLU(inplace=False)
             
-    def forward(self, x):
-            x1 = self.conv6(x)
+    def forward(self, *x):
+            x1 = self.conv6(x[-1])
             x1 = self.relu(x1)
             x1 = self.conv7(x1)
             x1 = self.relu(x1)
         
-            x2 = self.conv8(x)
+            x2 = self.conv8(x[-1])
             x2 = self.relu(x2)
             x2 = self.conv9(x2)
             x2 = self.relu(x2)
 
-            x3 = self.conv10(x)
+            x3 = self.conv10(x[-1])
             x3 = self.relu(x3)
             x3 = self.conv11(x3)
             x3 = self.relu(x3)
