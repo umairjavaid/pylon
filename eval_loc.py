@@ -11,7 +11,7 @@ def eval_localization(name,
                       seed,
                       make_net,
                       mode='best',
-                      images_path='data/images',
+                      images_path='input/data',
                       bs=64,
                       dev='cuda:0',
                       size=256,
@@ -76,6 +76,6 @@ if __name__ == "__main__":
         eval_localization(
             name=name,
             seed=seed,
-            make_net=make_net('vgg16'),
+            make_net=make_net('resnet50'),
             interpolation='cubic',
         )
