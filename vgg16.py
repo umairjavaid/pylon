@@ -98,7 +98,7 @@ class myModel47(nn.Module):
         #self.fc = nn.Linear(1024, num_classes)
         initialize_weights(self.modules(), init_mode='he')
 
-    def forward(self, x, labels=None, return_cam=False):
+    def forward(self, x, labels=None, return_cam=False, **kwargs):
         batch_size = x.shape[0]
         x1 = self.features(x)
         x1 = self.conv6(x1)
