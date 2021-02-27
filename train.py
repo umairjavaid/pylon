@@ -54,6 +54,8 @@ class BinaryClassificationTrainer(BaseTrainer):
         y = data['evidence']
         res = self.net(x)
         #loss = F.binary_cross_entropy_with_logits(res['pred'], y)
+        print("y: ",y)
+        
         loss = floss1(res['pred'], y)
         return {
             'x': x,
