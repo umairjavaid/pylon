@@ -94,7 +94,7 @@ picked_files = [
 
 def generate(checkpoint,
              picked=True,
-             images_path='data/images',
+             images_path='input/data',
              size=256,
              interpolation='cubic',
              plot_size=7,
