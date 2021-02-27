@@ -29,19 +29,19 @@ class FocalLoss(nn.Module):
         self.alpha = alpha
 
     def get_attention(self, input, target):
-        print("input.size(): ",input.size())
-        print("target.size(): ",target.size())
+        #print("input.size(): ",input.size())
+        #print("target.size(): ",target.size())
         target = target.long()
         prob = F.softmax(input, dim=-1)
-        prob = prob[range(target.shape[0]), target]
+        #prob = prob[range(target.shape[0]), target]
         prob = 1 - prob
         prob = prob ** self.gamma
         return prob
 
     def get_celoss(self, input, target):
         target = target.long()
-        ce_loss = F.log_softmax(input, dim=1)
-        ce_loss = -ce_loss[range(target.shape[0]), target]
+        ce_loss = -F.log_softmax(input, dim=1)
+        #ce_loss = -ce_loss[range(target.shape[0]), target]
         return ce_loss
 
     def forward(self, input, target):
@@ -58,7 +58,7 @@ class BinaryClassificationTrainer(BaseTrainer):
         y = data['evidence']
         res = self.net(x)
         #loss = F.binary_cross_entropy_with_logits(res['pred'], y)
-        print("y: ",y)
+        #print("y: ",y)
         
         loss = floss1(res['pred'], y)
         return {
