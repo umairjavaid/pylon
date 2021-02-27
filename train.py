@@ -29,6 +29,8 @@ class FocalLoss(nn.Module):
         self.alpha = alpha
 
     def get_attention(self, input, target):
+        print("input.type(): ", input.type())
+        print("target.type(): ", target.type())
         prob = F.softmax(input, dim=-1)
         prob = prob[range(target.shape[0]), target]
         prob = 1 - prob
