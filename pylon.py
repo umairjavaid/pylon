@@ -88,7 +88,7 @@ class midmodule(nn.Module):
             decoder_channels=decoder_channels,
             upscale_mode='bilinear',
             align_corners=align_corners,
-        )
+        ):
         self.conv6 = nn.Conv2d(encoder_channels,  1024, kernel_size=3, padding=1) 
         self.conv7 = nn.Conv2d(1024, decoder_channels, kernel_size=1)
         self.conv8 = nn.Conv2d(encoder_channels,  1024, kernel_size=3, padding=1) 
