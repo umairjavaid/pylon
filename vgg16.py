@@ -79,7 +79,7 @@ class MyModel2(nn.Module):
           return input_.mul(importance_map)
 
 class myModel47(nn.Module):
-    def __init__(self, features, num_classes=14):
+    def __init__(self, features, num_classes=14, **kwargs):
         super(myModel47, self).__init__()
         self.features = features
         self.conv6 = nn.Conv2d(512,  1024, kernel_size=3, padding=1) 
