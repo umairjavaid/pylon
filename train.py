@@ -22,20 +22,31 @@ https://github.com/pytorch/pytorch/issues/973
 """
 torch.multiprocessing.set_sharing_strategy('file_system')
 
-class WeightedFocalLoss(nn.Module):
-    "Non weighted version of Focal Loss"
-    def __init__(self, alpha=0.25, gamma=2):
-        super(WeightedFocalLoss, self).__init__()
-        self.alpha = torch.tensor([alpha, 1-alpha]).cuda()
+class FocalLoss(nn.Module):
+    def __init__(self, alpha=1, gamma=0):
+        super(FocalLoss, self).__init__()
         self.gamma = gamma
+        self.alpha = alpha
 
-    def forward(self, inputs, targets):
-        BCE_loss = F.binary_cross_entropy_with_logits(inputs, targets, reduction='none')
-        targets = targets.type(torch.long)
-        at = self.alpha.gather(0, targets.data.view(-1))
-        pt = torch.exp(-BCE_loss)
-        F_loss = at*(1-pt)**self.gamma * BCE_loss
-        return F_loss.mean()
+    def get_attention(self, input, target):
+        prob = F.softmax(input, dim=-1)
+        prob = prob[range(target.shape[0]), target]
+        prob = 1 - prob
+        prob = prob ** self.gamma
+        return prob
+
+    def get_celoss(self, input, target):
+        ce_loss = F.log_softmax(input, dim=1)
+        ce_loss = -ce_loss[range(target.shape[0]), target]
+        return ce_loss
+
+    def forward(self, input, target):
+        attn = self.get_attention(input, target)
+        ce_loss = self.get_celoss(input, target)
+        loss = self.alpha * ce_loss * attn
+        return loss.mean()
+
+floss1 = FocalLoss(alpha=0.25, gamma=2)
 
 class BinaryClassificationTrainer(BaseTrainer):
     def forward_pass(self, data, **kwargs):
@@ -43,7 +54,7 @@ class BinaryClassificationTrainer(BaseTrainer):
         y = data['evidence']
         res = self.net(x)
         #loss = F.binary_cross_entropy_with_logits(res['pred'], y)
-        loss = WeightedFocalLoss(res['pred'], y)
+        loss = floss1(res['pred'], y)
         return {
             'x': x,
             'y': y,
