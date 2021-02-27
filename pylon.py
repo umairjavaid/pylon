@@ -70,11 +70,7 @@ class PylonCore(SegmentationModel):
             align_corners=align_corners,
         )
 
-        self.segmentation_head = SegmentationHead(in_channels=decoder_channels,
-                                                  out_channels=classes,
-                                                  activation=None,
-                                                  kernel_size=1,
-                                                  upsampling=upsampling)
+        self.segmentation_head = None
 
         # just to comply with SegmentationModel
         self.classification_head = None
@@ -84,12 +80,12 @@ class PylonCore(SegmentationModel):
 
 class midmodule(nn.Module):
     def __init__(self, encoder_channels, decoder_channels, upscale_mode='bilinear', align_corners=True,):
-            self.conv6 = nn.Conv2d(encoder_channels,  1024, kernel_size=3, padding=1) 
-            self.conv7 = nn.Conv2d(1024, decoder_channels, kernel_size=1)
-            self.conv8 = nn.Conv2d(encoder_channels,  1024, kernel_size=3, padding=1) 
-            self.conv9 = nn.Conv2d(1024, decoder_channels, kernel_size=1)
-            self.conv10 = nn.Conv2d(encoder_channels,  1024, kernel_size=3, padding=1) 
-            self.conv11 = nn.Conv2d(1024, decoder_channels, kernel_size=1)
+            self.conv6 = nn.Conv2d(encoder_channels[-1],  1024, kernel_size=3, padding=1) 
+            self.conv7 = nn.Conv2d(1024, 14, kernel_size=1)
+            self.conv8 = nn.Conv2d(encoder_channels[-1],  1024, kernel_size=3, padding=1) 
+            self.conv9 = nn.Conv2d(1024, 14, kernel_size=1)
+            self.conv10 = nn.Conv2d(encoder_channels[-1],  1024, kernel_size=3, padding=1) 
+            self.conv11 = nn.Conv2d(1024, 14, kernel_size=1)
             self.relu = nn.ReLU(inplace=False)
             
     def forward(self, x):
