@@ -144,6 +144,6 @@ if __name__ == "__main__":
         dev='cuda:0',
         bs=64,
         seed=0,
-        n_worker=0,
+        n_worker=4,
         interpolation='cubic',
     )
