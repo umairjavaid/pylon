@@ -44,8 +44,8 @@ class BinaryClassificationTrainer(BaseTrainer):
 
 
 def make_net(backbone):
-    #return partial(Pylon, backbone=backbone)
-    return vgg16('mymodel47',pretrained=True)
+    return partial(Pylon, backbone=backbone)
+    #return vgg16('mymodel47',pretrained=True)
 
 
 def train(name,
