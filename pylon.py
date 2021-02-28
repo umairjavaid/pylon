@@ -108,9 +108,9 @@ class PylonDecoder(nn.Module):
             x3 = self.relu(x3)
             x3 = self.conv11(x3)
             x3 = self.relu(x3)
-            #y = x1 + x2 + x3
-            #global heatmap
-            #heatmap = copy.deepcopy(y)
+            y = x1 + x2 + x3
+            global heatmap
+            heatmap.data = y.clone()
             x = torch.max(x1 ,x2)
             x = torch.max(x ,x3)
             return x
