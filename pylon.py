@@ -39,7 +39,7 @@ class Pylon(nn.Module):
 
         return {
             'pred': pred,
-            'seg': seg,
+            'seg': heatmap,
         }
 
 
@@ -110,7 +110,7 @@ class PylonDecoder(nn.Module):
             x3 = self.relu(x3)
             y = x1 + x2 + x3
             global heatmap
-            heatmap.data = y.clone()
+            heatmap.data = y.clone().float()
             x = torch.max(x1 ,x2)
             x = torch.max(x ,x3)
             return x
