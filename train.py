@@ -62,14 +62,14 @@ class BinaryClassificationTrainer(BaseTrainer):
         F_loss = 0.25 * (1-pt)**2 * loss
         #print("y: ",y)
         
-        loss = F_loss(res['pred'], y)
+        #loss = F_loss(res['pred'], y)
         return {
             'x': x,
             'y': y,
             **data,
             'pred': res['pred'],
             'pred_seg': res['seg'],
-            'loss': loss,
+            'loss': F_loss,
             'n': len(x),
         }
 
