@@ -22,36 +22,6 @@ https://github.com/pytorch/pytorch/issues/973
 """
 torch.multiprocessing.set_sharing_strategy('file_system')
 
-class FocalLoss(nn.Module):
-    def __init__(self, alpha=1, gamma=0):
-        super(FocalLoss, self).__init__()
-        self.gamma = gamma
-        self.alpha = alpha
-
-    def get_attention(self, input, target):
-        #print("input.size(): ",input.size())
-        #print("target.size(): ",target.size())
-        target = target.long()
-        prob = F.softmax(input, dim=-1)
-        #prob = prob[range(target.shape[0]), target]
-        prob = 1 - prob
-        prob = prob ** self.gamma
-        return prob
-
-    def get_celoss(self, input, target):
-        target = target.long()
-        ce_loss = -F.log_softmax(input, dim=1)
-        #ce_loss = -ce_loss[range(target.shape[0]), target]
-        return ce_loss
-
-    def forward(self, input, target):
-        attn = self.get_attention(input, target)
-        ce_loss = self.get_celoss(input, target)
-        loss = self.alpha * ce_loss * attn
-        return loss.mean()
-
-floss1 = FocalLoss(alpha=0.25, gamma=2)
-
 class BinaryClassificationTrainer(BaseTrainer):
     def forward_pass(self, data, **kwargs):
         x = data['img']
@@ -59,7 +29,8 @@ class BinaryClassificationTrainer(BaseTrainer):
         res = self.net(x)
         loss = F.binary_cross_entropy_with_logits(res['pred'], y)
         pt = torch.exp(-loss) # prevents nans when probability 0
-        F_loss = 0.25 * (1-pt)**2 * loss
+        loss = -( (1-pt)**2 ) * loss
+        loss = 0.25 * loss
         #print("y: ",y)
         
         #loss = F_loss(res['pred'], y)
