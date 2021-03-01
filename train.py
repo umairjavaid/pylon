@@ -27,10 +27,10 @@ class BinaryClassificationTrainer(BaseTrainer):
         x = data['img']
         y = data['evidence']
         res = self.net(x)
-        loss = F.binary_cross_entropy_with_logits(res['pred'], y)
+        loss = F.binary_cross_entropy_with_logits(res['pred'], y, reduction='none')
         pt = torch.exp(-loss) # prevents nans when probability 0
-        loss = -( (1-pt)**2 ) * loss
-        loss = 0.25 * loss
+        loss = 0.25*((1-pt)**2)*loss
+        loss = loss.mean()
         #print("y: ",y)
         
         #loss = F_loss(res['pred'], y)
