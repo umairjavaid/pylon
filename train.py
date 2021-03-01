@@ -40,7 +40,7 @@ class BinaryClassificationTrainer(BaseTrainer):
             **data,
             'pred': res['pred'],
             'pred_seg': res['seg'],
-            'loss': F_loss,
+            'loss': loss,
             'n': len(x),
         }
 
